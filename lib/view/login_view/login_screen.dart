@@ -84,12 +84,18 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.060,
                   ),
-                  RoundButton(
-                    OnTap: () {
-                      if ((controller.formKey.currentState!.validate())) {}
-                    },
-                    title: 'button_title'.tr,
-                  )
+                  Obx(() {
+                    return RoundButton(
+                      loding: controller.loading.value,
+                      OnTap: () {
+                        if ((controller.formKey.currentState!.validate())){
+                          controller.loginApi();
+                        }
+
+                      },
+                      title: 'button_title'.tr,
+                    );
+                  })
                 ],
               ),
             )

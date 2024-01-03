@@ -5,9 +5,11 @@ import 'package:http/http.dart';
 
 class RoundButton extends StatelessWidget {
   final title;
+  bool? loding;
 
   VoidCallback OnTap;
-  RoundButton({super.key, required this.OnTap, required this.title});
+  RoundButton(
+      {super.key, required this.OnTap, required this.title, this.loding});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,16 @@ class RoundButton extends StatelessWidget {
           color: Colors.green,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(
-          title.toString(),
-          style: TextStyle(
-            fontSize: Get.width * 0.040,
-            color: Colors.black,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
+        child: loding == true
+            ? CircularProgressIndicator()
+            : Text(
+                title.toString(),
+                style: TextStyle(
+                  fontSize: Get.width * 0.040,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
       ),
     );
   }
